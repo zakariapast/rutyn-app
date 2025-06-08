@@ -1,3 +1,4 @@
+// pages/checkout/[productId].tsx
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
@@ -18,7 +19,9 @@ export default function CheckoutPage() {
   const { t } = useTranslation('common');
 
   const [product, setProduct] = useState<Product | null>(null);
+  const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (!productId) return;
@@ -33,6 +36,26 @@ export default function CheckoutPage() {
     fetchProduct();
   }, [productId]);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !product) return;
+
+    setSubmitting(true);
+    const res = await fetch('/api/checkout/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email,
+        productId: product._id,
+        title: product.title,
+        price: product.price,
+      }),
+    });
+
+    const { invoiceUrl } = await res.json();
+    window.location.href = invoiceUrl;
+  };
+
   if (loading || !product) return <p className="p-4">{t('loading')}</p>;
 
   return (
@@ -43,9 +66,24 @@ export default function CheckoutPage() {
       <p className="text-lg font-semibold text-blue-600 mb-4">
         Rp {product.price.toLocaleString()} / {product.interval}
       </p>
-      <button className="w-full bg-teal-500 text-white py-2 rounded hover:bg-teal-600 transition">
-        {t('payNow')}
-      </button>
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="email"
+          required
+          placeholder="Your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full border p-2 rounded"
+        />
+        <button
+          type="submit"
+          disabled={submitting}
+          className="w-full bg-teal-500 text-white py-2 rounded hover:bg-teal-600 transition"
+        >
+          {submitting ? t('loading') : t('payNow')}
+        </button>
+      </form>
     </div>
   );
 }
@@ -53,7 +91,7 @@ export default function CheckoutPage() {
 export async function getStaticPaths() {
   return {
     paths: [],
-    fallback: 'blocking', // allow dynamic routes
+    fallback: 'blocking',
   };
 }
 
