@@ -1,4 +1,28 @@
 // pages/microsite/index.tsx
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+
+export default function MicrositePage() {
+  const { t } = useTranslation('common');
+
+  return (
+    <div className="min-h-screen p-4 bg-gray-50">
+      <h1 className="text-xl font-bold mb-4">
+        {t('productFrom', { seller: 'WarungKeto' })}
+      </h1>
+      {/* map product cards here */}
+    </div>
+  );
+}
+
+export async function getStaticProps({ locale }: any) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ['common'])),
+    },
+  };
+}
+
 import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
 
