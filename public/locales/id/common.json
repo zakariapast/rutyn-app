@@ -9,3 +9,9 @@
   "payNow": "Bayar Sekarang",
   "productFrom": "Paket langganan dari {{seller}}"
 }
+{
+  "thankYou": "Terima kasih atas pembayaran Anda!",
+  "paymentProcessing": "Kami sedang memproses langganan Anda. Konfirmasi akan dikirimkan segera.",
+  "backHome": "Kembali ke Beranda"
+}
+
