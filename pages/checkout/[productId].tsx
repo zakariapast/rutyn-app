@@ -1,4 +1,4 @@
-// pages/dashboard/index.tsx
+// pages/checkout/[productId].tsx
 
 export default function DashboardPage() {
   return (
