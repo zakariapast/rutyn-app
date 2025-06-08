@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "jsx": "preserve",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true
+  }
+}
