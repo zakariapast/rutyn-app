@@ -9,4 +9,10 @@
   "payNow": "Pay Now",
   "productFrom": "Subscription plans from {{seller}}"
 }
+{
+  "thankYou": "Thank you for your payment!",
+  "paymentProcessing": "We’re processing your subscription. You’ll receive a confirmation soon.",
+  "backHome": "Back to Home"
+}
+
 
