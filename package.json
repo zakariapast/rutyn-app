@@ -13,7 +13,7 @@
     "mongodb": "^5.7.0",
     "next-i18next": "^13.1.6",
     "react-i18next": "^13.0.1",
-    "i18next": "^23.6.3"
+    "i18next": "^22.4.15"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
