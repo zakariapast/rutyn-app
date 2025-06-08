@@ -3,6 +3,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import ProductCard from '@/components/ProductCard';
+import LanguageSwitcher from '@/components/LanguageSwitcher'; // ✅ moved to top
 
 interface Product {
   _id: string;
@@ -27,6 +28,7 @@ export default function MicrositePage() {
 
   return (
     <div className="min-h-screen p-4 bg-gray-50">
+      <LanguageSwitcher /> {/* ✅ place this here inside the JSX */}
       <h1 className="text-xl font-bold mb-4">
         {t('productFrom', { seller: 'WarungKeto' })}
       </h1>
