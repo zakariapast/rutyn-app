@@ -4,6 +4,7 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from 'recharts';
 import { getUserFromRequest } from '@/lib/auth';
+import { GetServerSidePropsContext } from 'next';
 
 interface Subscription {
   _id: string;
@@ -12,7 +13,7 @@ interface Subscription {
   paidAt: string;
 }
 
-export default function Dashboard({ userId }: { userId: string }) {
+export default function Dashboard({ loggedInUserId }: { loggedInUserId: string }) {
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -150,7 +151,7 @@ export default function Dashboard({ userId }: { userId: string }) {
 }
 
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const user = await getUserFromRequest(context);
 
   if (!user) {
