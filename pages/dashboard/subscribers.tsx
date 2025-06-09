@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Copy } from 'lucide-react';
 
 interface Subscription {
   _id: string;
@@ -127,8 +128,9 @@ export default function SubscribersPage() {
           </thead>
           <tbody className="text-gray-800">
             {filtered.map((s) => {
-              const msg = encodeURIComponent(`Halo, terima kasih telah berlangganan ${s.productTitle} 🙏`);
-              const waLink = `https://wa.me/?text=${msg}`;
+              const isNewToday = new Date(s.paidAt) >= startOfToday;
+              const msg = `Halo, terima kasih telah berlangganan ${s.productTitle} 🙏`;
+              const waLink = `https://wa.me/?text=${encodeURIComponent(msg)}`;
               return (
                 <tr key={s._id} className="border-t hover:bg-gray-50">
                   <td className="px-4 py-3">{s.email}</td>
@@ -136,16 +138,28 @@ export default function SubscribersPage() {
                   <td className="px-4 py-3">Rp {s.amount.toLocaleString()}</td>
                   <td className="px-4 py-3 font-medium text-green-600">{s.status}</td>
                   <td className="px-4 py-3">{new Date(s.paidAt).toLocaleString()}</td>
-                  <td className="px-4 py-3">
-                    <a
-                      href={waLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-teal-600 hover:underline text-sm"
-                    >
-                      Kirim Pesan
-                    </a>
-                  </td>
+<td className="px-4 py-3 space-y-1">
+  <a
+    href={waLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-teal-600 hover:underline text-sm block"
+  >
+    Kirim Pesan
+  </a>
+  <button
+    onClick={() => navigator.clipboard.writeText(msg)}
+    className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1"
+  >
+    <Copy size={14} /> Salin Pesan
+  </button>
+  {isNewToday && (
+    <span className="inline-block text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded">
+      NEW
+    </span>
+  )}
+</td>
+
                 </tr>
               );
             })}
