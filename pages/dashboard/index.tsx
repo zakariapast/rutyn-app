@@ -3,6 +3,7 @@ import Layout from '@/components/Layout';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from 'recharts';
+import { getUserFromRequest } from '@/lib/auth';
 
 interface Subscription {
   _id: string;
@@ -11,7 +12,7 @@ interface Subscription {
   paidAt: string;
 }
 
-export default function Dashboard() {
+export default function Dashboard({ userId }: { userId: string }) {
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -147,7 +148,7 @@ export default function Dashboard() {
     </Layout>
   );
 }
-import { getUserFromRequest } from '@/lib/auth';
+
 
 export const getServerSideProps = async (context) => {
   const user = await getUserFromRequest(context);
