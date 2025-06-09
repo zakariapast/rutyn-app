@@ -32,4 +32,10 @@
   "engines": {
     "node": "18.x"
   }
+  "scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "postinstall": "tailwindcss -i ./styles/globals.css -o ./public/tailwind.css --minify",
+  "start": "next start"
+  }
 }
