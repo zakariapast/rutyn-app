@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
@@ -7,7 +8,8 @@ module.exports = {
     'text-deepBlue',
     'bg-deepBlue',
     'text-teal',
-    'bg-teal'
+    'bg-teal',
+    'ring-teal-500',
   ],
   theme: {
     extend: {
