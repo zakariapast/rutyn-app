@@ -3,7 +3,6 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect, useState } from 'react';
 import { Copy } from 'lucide-react';
-import Image from 'next/image';
 
 interface Product {
   _id: string;
@@ -17,8 +16,6 @@ export default function SellerMicrosite({ username }: { username: string }) {
   const { t } = useTranslation('common');
   const [products, setProducts] = useState<Product[]>([]);
   const [copied, setCopied] = useState(false);
-
-  // Placeholder logic for new user
   const isNewUser = true;
 
   useEffect(() => {
@@ -37,31 +34,32 @@ export default function SellerMicrosite({ username }: { username: string }) {
   };
 
   return (
-<div className="relative w-full">
-  <div className="w-full">
-    <img
-      src="/default-banner.jpg"
-      alt="Banner"
-      className="w-full h-64 md:h-80 object-cover"
-    />
-  </div>
-  <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center bg-[#2A4D8E]/70 px-4">
-    <h1 className="text-3xl font-bold capitalize">{username}</h1>
-    <p className="max-w-md text-white/90 text-sm mt-1">
-      Makanan sehat langganan langsung ke rumah.
-    </p>
-    <button
-      onClick={handleCopy}
-      className="mt-4 px-4 py-2 bg-white text-[#2A4D8E] rounded font-medium hover:bg-gray-100 transition inline-flex items-center gap-2"
-    >
-      <Copy className="w-4 h-4" />
-      {copied ? 'Tersalin!' : 'Tanya via WhatsApp'}
-    </button>
-  </div>
-</div>
+    <div className="min-h-screen bg-white">
+      {/* Banner Section */}
+      <div className="relative w-full">
+        <div className="w-full">
+          <img
+            src="/default-banner.jpg"
+            alt="Banner"
+            className="w-full h-64 md:h-80 object-cover"
+          />
+        </div>
+        <div className="absolute inset-0 bg-[#2A4D8E]/70 flex flex-col items-center justify-center text-white text-center px-4">
+          <h1 className="text-3xl font-bold capitalize">{username}</h1>
+          <p className="max-w-md text-white/90 text-sm mt-1">
+            Makanan sehat langganan langsung ke rumah.
+          </p>
+          <button
+            onClick={handleCopy}
+            className="mt-4 px-4 py-2 bg-white text-[#2A4D8E] rounded font-medium hover:bg-gray-100 transition inline-flex items-center gap-2"
+          >
+            <Copy className="w-4 h-4" />
+            {copied ? 'Tersalin!' : 'Tanya via WhatsApp'}
+          </button>
+        </div>
+      </div>
 
-
-      {/* Products */}
+      {/* Product Section */}
       <section className="max-w-5xl mx-auto p-6">
         <h2 className="text-xl font-semibold mb-4 text-[#2A4D8E]">Paket Langganan</h2>
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
@@ -95,7 +93,7 @@ export default function SellerMicrosite({ username }: { username: string }) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [], // Use fallback
+    paths: [],
     fallback: 'blocking',
   };
 };
