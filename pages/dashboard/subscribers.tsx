@@ -1,4 +1,3 @@
-// pages/dashboard/subscribers.tsx
 import { useEffect, useState } from 'react';
 
 interface Subscription {
@@ -13,6 +12,7 @@ interface Subscription {
 
 export default function SubscribersPage() {
   const [subs, setSubs] = useState<Subscription[]>([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     async function fetchSubs() {
@@ -23,9 +23,25 @@ export default function SubscribersPage() {
     fetchSubs();
   }, []);
 
+  // 🔍 Filtered list
+  const filtered = subs.filter((s) =>
+    s.email.toLowerCase().includes(query.toLowerCase()) ||
+    s.productTitle.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-4">Daftar Pelanggan</h1>
+
+      {/* 🔎 Search Input */}
+      <input
+        type="text"
+        placeholder="Cari email atau produk..."
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className="w-full mb-4 p-2 border rounded"
+      />
+
       <div className="overflow-auto">
         <table className="min-w-full bg-white border rounded shadow-sm">
           <thead className="bg-gray-100">
@@ -38,7 +54,7 @@ export default function SubscribersPage() {
             </tr>
           </thead>
           <tbody>
-            {subs.map((s) => (
+            {filtered.map((s) => (
               <tr key={s._id} className="border-t">
                 <td className="p-2">{s.email}</td>
                 <td className="p-2">{s.productTitle}</td>
@@ -49,6 +65,7 @@ export default function SubscribersPage() {
             ))}
           </tbody>
         </table>
+        {filtered.length === 0 && <p className="text-center mt-4 text-sm text-gray-500">Tidak ditemukan.</p>}
       </div>
     </div>
   );
