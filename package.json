@@ -7,6 +7,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "tailwindcss": "^3.3.0",
+    "postcss": "^8.4.21",
+    "autoprefixer": "^10.4.14",
     "lucide-react": "^0.276.0",
     "recharts": "^2.8.0",
     "axios": "^1.6.8",
