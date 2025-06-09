@@ -5,11 +5,11 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   safelist: [
+    'ring-teal-500',
     'text-deepBlue',
     'bg-deepBlue',
     'text-teal',
     'bg-teal',
-    'ring-teal-500',
   ],
   theme: {
     extend: {
