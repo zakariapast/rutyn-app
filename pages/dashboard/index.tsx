@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Layout from '@/components/Layout';
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid
 } from 'recharts';
@@ -66,6 +67,7 @@ export default function Dashboard() {
   const totalCustomers = subs.length;
 
   return (
+    <Layout>
     <div className="max-w-6xl mx-auto p-6 space-y-12">
       {/* 📊 Summary Section */}
       <section>
@@ -143,5 +145,6 @@ export default function Dashboard() {
         {status && <p className="mt-4 text-center">{status}</p>}
       </section>
     </div>
+    </Layout>  
   );
 }
