@@ -2,7 +2,12 @@
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      <main className="max-w-6xl mx-auto px-4 py-8">{children}</main>
+      <header className="bg-white border-b px-6 py-4 text-xl font-bold text-deepBlue">
+        rutyn dashboard
+      </header>
+      <main className="max-w-6xl mx-auto px-4 py-8">
+        {children}
+      </main>
     </div>
   );
 }
