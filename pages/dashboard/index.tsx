@@ -147,3 +147,23 @@ export default function Dashboard() {
     </Layout>
   );
 }
+import { getUserFromRequest } from '@/lib/auth';
+
+export const getServerSideProps = async (context) => {
+  const user = await getUserFromRequest(context);
+
+  if (!user) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      userId: user._id.toString(),
+    },
+  };
+};
