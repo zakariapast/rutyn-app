@@ -1,17 +1,9 @@
-// components/Layout.tsx
+import Navbar from './Navbar';
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800">
-      <header className="bg-white border-b shadow-sm sticky top-0 z-50">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-2xl font-bold text-[#2A4D8E]">rutyn</div>
-          <nav className="space-x-4 text-sm font-medium">
-            <a href="/dashboard" className="text-gray-700 hover:text-[#2A4D8E]">Dashboard</a>
-            <a href="/dashboard/subscribers" className="text-gray-700 hover:text-[#2A4D8E]">Pelanggan</a>
-            {/* <a href="/settings" className="text-gray-700 hover:text-[#2A4D8E]">Pengaturan</a> */}
-          </nav>
-        </div>
-      </header>
+      <Navbar />
       <main className="max-w-6xl mx-auto px-4 py-8">
         {children}
       </main>
