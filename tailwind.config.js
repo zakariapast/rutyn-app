@@ -8,14 +8,14 @@ module.exports = {
     'ring-teal-500',
     'text-deepBlue',
     'bg-deepBlue',
-    'text-teal',
-    'bg-teal',
+    'text-brandTeal',
+    'bg-brandTeal',
   ],
   theme: {
     extend: {
       colors: {
         deepBlue: '#2A4D8E',
-        teal: '#1ABC9C',
+        brandTeal: '#1ABC9C',
       },
     },
   },
