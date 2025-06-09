@@ -5,6 +5,7 @@ interface Subscription {
   _id: string;
   email: string;
   productId: string;
+  productTitle: string;
   amount: number;
   paidAt: string;
   status: string;
@@ -30,7 +31,7 @@ export default function SubscribersPage() {
           <thead className="bg-gray-100">
             <tr>
               <th className="p-2 text-left">Email</th>
-              <th className="p-2 text-left">Product ID</th>
+              <th className="p-2 text-left">Produk</th>
               <th className="p-2 text-left">Amount</th>
               <th className="p-2 text-left">Status</th>
               <th className="p-2 text-left">Paid At</th>
@@ -40,7 +41,7 @@ export default function SubscribersPage() {
             {subs.map((s) => (
               <tr key={s._id} className="border-t">
                 <td className="p-2">{s.email}</td>
-                <td className="p-2">{s.productId}</td>
+                <td className="p-2">{s.productTitle}</td>
                 <td className="p-2">Rp {s.amount.toLocaleString()}</td>
                 <td className="p-2">{s.status}</td>
                 <td className="p-2">{new Date(s.paidAt).toLocaleString()}</td>
