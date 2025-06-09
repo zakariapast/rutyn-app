@@ -7,6 +7,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "lucide-react": "^0.276.0",
     "recharts": "^2.8.0",
     "axios": "^1.6.8",
     "next": "^13.4.19",
