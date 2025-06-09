@@ -23,49 +23,50 @@ export default function SubscribersPage() {
     fetchSubs();
   }, []);
 
-  // 🔍 Filtered list
   const filtered = subs.filter((s) =>
     s.email.toLowerCase().includes(query.toLowerCase()) ||
     s.productTitle.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Daftar Pelanggan</h1>
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-3xl font-semibold mb-6 text-deepBlue">Daftar Pelanggan</h1>
 
-      {/* 🔎 Search Input */}
+      {/* Search */}
       <input
         type="text"
         placeholder="Cari email atau produk..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full p-3 border border-gray-300 rounded-lg mb-6 focus:ring-2 focus:ring-teal-500 outline-none"
       />
 
-      <div className="overflow-auto">
-        <table className="min-w-full bg-white border rounded shadow-sm">
-          <thead className="bg-gray-100">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 shadow-sm">
+        <table className="min-w-full text-sm">
+          <thead className="bg-gray-100 text-gray-700 uppercase text-xs tracking-wider">
             <tr>
-              <th className="p-2 text-left">Email</th>
-              <th className="p-2 text-left">Produk</th>
-              <th className="p-2 text-left">Amount</th>
-              <th className="p-2 text-left">Status</th>
-              <th className="p-2 text-left">Paid At</th>
+              <th className="px-4 py-3 text-left">Email</th>
+              <th className="px-4 py-3 text-left">Produk</th>
+              <th className="px-4 py-3 text-left">Jumlah</th>
+              <th className="px-4 py-3 text-left">Status</th>
+              <th className="px-4 py-3 text-left">Dibayar Pada</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-gray-800">
             {filtered.map((s) => (
-              <tr key={s._id} className="border-t">
-                <td className="p-2">{s.email}</td>
-                <td className="p-2">{s.productTitle}</td>
-                <td className="p-2">Rp {s.amount.toLocaleString()}</td>
-                <td className="p-2">{s.status}</td>
-                <td className="p-2">{new Date(s.paidAt).toLocaleString()}</td>
+              <tr key={s._id} className="border-t hover:bg-gray-50">
+                <td className="px-4 py-3">{s.email}</td>
+                <td className="px-4 py-3">{s.productTitle}</td>
+                <td className="px-4 py-3">Rp {s.amount.toLocaleString()}</td>
+                <td className="px-4 py-3 font-medium text-green-600">{s.status}</td>
+                <td className="px-4 py-3">{new Date(s.paidAt).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
         </table>
-        {filtered.length === 0 && <p className="text-center mt-4 text-sm text-gray-500">Tidak ditemukan.</p>}
+        {filtered.length === 0 && (
+          <p className="text-center text-sm text-gray-500 py-6">Tidak ditemukan.</p>
+        )}
       </div>
     </div>
   );
