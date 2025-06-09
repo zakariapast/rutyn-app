@@ -39,27 +39,27 @@ export default function SellerMicrosite({ username }: { username: string }) {
   return (
     <div className="min-h-screen bg-white">
       {/* Banner */}
-      <div className="relative h-48 md:h-64 w-full bg-[#2A4D8E]">
-<img
-  src="/default-banner.jpg"
-  alt="Seller Banner"
-  className="w-full h-48 md:h-64 object-cover opacity-80"
-/>
+     <div className="relative w-full">
+  <img
+    src="/default-banner.jpg"
+    alt="Banner"
+    className="w-full h-64 md:h-80 object-cover"
+  />
+  <div className="absolute inset-0 bg-[#2A4D8E]/70 flex flex-col items-center justify-center text-white text-center px-4">
+    <h1 className="text-3xl font-bold capitalize">{username}</h1>
+    <p className="max-w-md text-white/90 text-sm mt-1">
+      Makanan sehat langganan langsung ke rumah.
+    </p>
+    <button
+      onClick={handleCopy}
+      className="mt-4 px-4 py-2 bg-white text-[#2A4D8E] rounded font-medium hover:bg-gray-100 transition inline-flex items-center gap-2"
+    >
+      <Copy className="w-4 h-4" />
+      {copied ? 'Tersalin!' : 'Tanya via WhatsApp'}
+    </button>
+  </div>
+</div>
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-          <h1 className="text-3xl font-bold capitalize">{username}</h1>
-          <p className="max-w-md text-white/90 text-sm mt-1">
-            Makanan sehat langganan langsung ke rumah.
-          </p>
-          <button
-            onClick={handleCopy}
-            className="mt-4 px-4 py-2 bg-white text-[#2A4D8E] rounded font-medium hover:bg-gray-100 transition inline-flex items-center gap-2"
-          >
-            <Copy className="w-4 h-4" />
-            {copied ? 'Tersalin!' : 'Tanya via WhatsApp'}
-          </button>
-        </div>
-      </div>
 
       {/* Products */}
       <section className="max-w-5xl mx-auto p-6">
