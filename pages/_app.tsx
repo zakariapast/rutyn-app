@@ -1,4 +1,4 @@
-import '@/styles/globals.css';
+import '../public/tailwind.css'; // ✅ now use compiled CSS
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 
